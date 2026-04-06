@@ -1,0 +1,516 @@
+/* ============================================================
+   🎬 JELLYFIN — NETFLIX THEME
+   Auteur  : Toi (ton-github)
+   Repo    : https://github.com/TON_PSEUDO/jellyfin-netflix-theme
+   CDN     : https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@main/theme.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@300;400;700&display=swap');
+/* Netflix utilise sa propre police propriétaire ; on imite avec Bebas + Barlow */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* ─── VARIABLES GLOBALES ─────────────────────────────────── */
+:root {
+  --netflix-red:        #E50914;
+  --netflix-red-dark:   #b20710;
+  --netflix-red-glow:   rgba(229, 9, 20, 0.45);
+
+  --bg-primary:         #141414;
+  --bg-secondary:       #1a1a1a;
+  --bg-card:            #181818;
+  --bg-card-hover:      #2F2F2F;
+  --bg-overlay:         rgba(20, 20, 20, 0.85);
+  --bg-gradient-top:    linear-gradient(to bottom, rgba(20,20,20,0.9) 0%, transparent 60%);
+  --bg-gradient-bottom: linear-gradient(to top,    rgba(20,20,20,1)   30%, transparent 100%);
+
+  --text-primary:   #FFFFFF;
+  --text-secondary: #b3b3b3;
+  --text-muted:     #6b6b6b;
+
+  --border-color:   rgba(255,255,255,0.08);
+  --border-focus:   var(--netflix-red);
+
+  --radius-card:  4px;
+  --radius-btn:   4px;
+  --transition:   0.2s ease;
+  --transition-slow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body:    'Barlow', 'Helvetica Neue', Arial, sans-serif;
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.7);
+  --shadow-hover: 0 12px 48px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* ─── RESET & BASE ───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────── */
+::-webkit-scrollbar              { width: 6px; height: 6px; }
+::-webkit-scrollbar-track        { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb        { background: #3d3d3d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--netflix-red); }
+
+/* ─── HEADER / NAVBAR ────────────────────────────────────── */
+.skinHeader,
+.skinHeader-withBackground {
+  background: linear-gradient(to bottom, rgba(20,20,20,0.98) 0%, rgba(20,20,20,0.0) 100%) !important;
+  backdrop-filter: none !important;
+  border-bottom: none !important;
+  padding: 0 4% !important;
+  height: 68px !important;
+  transition: background var(--transition-slow) !important;
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 100 !important;
+}
+
+.skinHeader.skinHeader-scrolled,
+.skinHeader-withBackground.skinHeader-scrolled {
+  background: rgba(20,20,20,0.97) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.6) !important;
+}
+
+/* Logo */
+.headerLogo,
+.headerLogo img {
+  height: 36px !important;
+  filter: brightness(1.1);
+}
+
+/* Search input dans le header */
+.headerSearchInput {
+  background: rgba(20,20,20,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-btn) !important;
+  padding: 6px 12px !important;
+  font-family: var(--font-body) !important;
+  transition: border-color var(--transition) !important;
+}
+.headerSearchInput:focus {
+  border-color: var(--text-primary) !important;
+  background: rgba(20,20,20,0.95) !important;
+  outline: none !important;
+}
+.headerSearchInput::placeholder { color: var(--text-muted) !important; }
+
+/* Icônes header */
+.paper-icon-button-light,
+.headerButton {
+  color: var(--text-secondary) !important;
+  transition: color var(--transition) !important;
+}
+.paper-icon-button-light:hover,
+.headerButton:hover {
+  color: var(--text-primary) !important;
+}
+
+/* ─── SIDEBAR / DRAWER ───────────────────────────────────── */
+.mainDrawer,
+.mainDrawer-content {
+  background-color: var(--bg-primary) !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+.navMenuOption,
+.navMenuOption-selected {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  color: var(--text-secondary) !important;
+  border-radius: 0 !important;
+  padding: 10px 20px !important;
+  transition: color var(--transition), background var(--transition) !important;
+}
+.navMenuOption:hover {
+  color: var(--text-primary) !important;
+  background: rgba(255,255,255,0.05) !important;
+}
+.navMenuOption-selected,
+.navMenuOption-selected:hover {
+  color: var(--text-primary) !important;
+  border-left: 3px solid var(--netflix-red) !important;
+  background: rgba(229, 9, 20, 0.08) !important;
+}
+
+/* ─── PAGE PRINCIPALE ────────────────────────────────────── */
+.mainAnimatedPage,
+.padded-left,
+.padded-right,
+.padded-top {
+  background-color: var(--bg-primary) !important;
+}
+
+/* ─── SECTION HERO / BANNIÈRE ────────────────────────────── */
+.homeSectionsContainer { padding-top: 0 !important; }
+
+.backdropImage,
+.itemBackdrop {
+  border-radius: 0 !important;
+}
+
+/* Gradient sur le hero */
+.detailPagePrimaryContainer::after,
+.itemDetailPage .itemBackdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(20,20,20,0.95) 35%, rgba(20,20,20,0.5) 70%, transparent 100%),
+    linear-gradient(to top, rgba(20,20,20,1) 10%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ─── TITRES DE SECTIONS ─────────────────────────────────── */
+.sectionTitle,
+.sectionTitleContainer .sectionTitle {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  color: var(--text-primary) !important;
+  letter-spacing: -0.01em !important;
+  padding: 0 4% !important;
+  margin-bottom: 0.5rem !important;
+}
+.sectionTitleContainer { padding: 1.5rem 0 0.25rem !important; }
+
+/* ─── CARDS / THUMBNAILS ─────────────────────────────────── */
+.card {
+  border-radius: var(--radius-card) !important;
+  background: var(--bg-card) !important;
+  transition:
+    transform var(--transition-slow),
+    box-shadow var(--transition-slow),
+    z-index 0s !important;
+  will-change: transform;
+  overflow: visible !important;
+}
+
+.card:hover {
+  transform: scale(1.08) !important;
+  box-shadow: var(--shadow-hover) !important;
+  z-index: 10 !important;
+}
+
+.cardImageContainer {
+  border-radius: var(--radius-card) !important;
+  overflow: hidden !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+.cardImage {
+  transition: filter var(--transition-slow) !important;
+  border-radius: var(--radius-card) !important;
+}
+.card:hover .cardImage { filter: brightness(0.85) !important; }
+
+/* Texte sous la card */
+.cardText {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  color: var(--text-primary) !important;
+  padding: 6px 4px 2px !important;
+}
+.cardTextSecondary {
+  font-size: 0.7rem !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Badge (year, rating…) */
+.cardIndicator,
+.playedIndicator,
+.countIndicator {
+  background: var(--netflix-red) !important;
+  color: #fff !important;
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 0.6rem !important;
+  border-radius: 2px !important;
+  padding: 1px 5px !important;
+}
+
+/* Overlay au hover */
+.cardOverlayButton-hover .cardOverlayButtonIcon,
+.cardOverlayInner {
+  opacity: 0;
+  transition: opacity var(--transition) !important;
+}
+.card:hover .cardOverlayButton-hover .cardOverlayButtonIcon,
+.card:hover .cardOverlayInner {
+  opacity: 1;
+}
+
+/* ─── BOUTONS ─────────────────────────────────────────────── */
+.raised,
+.emby-button.raised {
+  background: var(--netflix-red) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-btn) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  padding: 10px 24px !important;
+  letter-spacing: 0.02em !important;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition) !important;
+  box-shadow: none !important;
+}
+.raised:hover,
+.emby-button.raised:hover {
+  background: var(--netflix-red-dark) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px var(--netflix-red-glow) !important;
+}
+.raised:active { transform: translateY(0) !important; }
+
+/* Bouton secondaire (blanc Netflix) */
+.emby-button:not(.raised) {
+  background: rgba(109, 109, 110, 0.7) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-btn) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  transition: background var(--transition) !important;
+}
+.emby-button:not(.raised):hover {
+  background: rgba(109, 109, 110, 0.4) !important;
+}
+
+/* ─── BOUTON LECTURE (play) ──────────────────────────────── */
+.detailButton-icon .md-icon,
+.playButton .md-icon {
+  color: #000 !important;
+}
+.detailButton.detailButton-primary {
+  background: #fff !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-btn) !important;
+}
+.detailButton.detailButton-primary:hover {
+  background: rgba(255,255,255,0.75) !important;
+}
+
+/* ─── PAGE DÉTAIL ─────────────────────────────────────────── */
+.itemDetailPage {
+  background: var(--bg-primary) !important;
+}
+
+.itemName,
+.itemDetailUnderTitle h3 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 5vw, 4rem) !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.05 !important;
+  color: var(--text-primary) !important;
+  text-shadow: 2px 4px 12px rgba(0,0,0,0.8) !important;
+}
+
+.overview {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-primary) !important;
+  max-width: 640px !important;
+}
+
+.itemMiscInfo {
+  font-family: var(--font-body) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem !important;
+}
+
+/* Rating / score */
+.starRating,
+.itemCommunityRating {
+  color: var(--netflix-red) !important;
+}
+
+/* Tags / genres */
+.itemDetailLinks a,
+.genreItem {
+  color: var(--text-secondary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  text-decoration: none !important;
+  transition: color var(--transition) !important;
+}
+.itemDetailLinks a:hover,
+.genreItem:hover {
+  color: var(--text-primary) !important;
+}
+
+/* ─── PLAYER ─────────────────────────────────────────────── */
+.htmlvideoplayer,
+.videoPlayerContainer {
+  background: #000 !important;
+}
+
+/* Barre de progression */
+.osdPositionSlider .mdl-slider__background-lower,
+.progressbar-inner {
+  background: var(--netflix-red) !important;
+}
+
+/* Contrôles */
+.osdControls {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%) !important;
+  padding: 24px 4% !important;
+}
+
+/* ─── BOITES DE DIALOGUE / MODALES ───────────────────────── */
+.dialogContainer .dialog,
+.fullscreenDialog,
+paper-dialog {
+  background: #242424 !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.8) !important;
+}
+
+/* ─── INPUTS / FORMULAIRES ───────────────────────────────── */
+.emby-input,
+.emby-textarea,
+.emby-select {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-btn) !important;
+  font-family: var(--font-body) !important;
+  transition: border-color var(--transition) !important;
+}
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select:focus {
+  border-color: var(--netflix-red) !important;
+  outline: none !important;
+}
+.emby-input::placeholder,
+.emby-textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Labels */
+.inputLabel,
+.checkboxLabel,
+.fieldDescription {
+  font-family: var(--font-body) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ─── CHECKBOXES ─────────────────────────────────────────── */
+.checkboxOutline { border-color: rgba(255,255,255,0.3) !important; }
+.checkbox:checked + .checkboxOutline {
+  background: var(--netflix-red) !important;
+  border-color: var(--netflix-red) !important;
+}
+
+/* ─── TABS ───────────────────────────────────────────────── */
+.emby-tab-button {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text-secondary) !important;
+  transition: color var(--transition) !important;
+}
+.emby-tab-button-active,
+.emby-tab-button.is-active {
+  color: var(--text-primary) !important;
+}
+.tabUnderline { background: var(--netflix-red) !important; }
+
+/* ─── PROGRESS BARS ──────────────────────────────────────── */
+.itemProgressBar,
+.progressring {
+  background: rgba(255,255,255,0.15) !important;
+  border-radius: 2px !important;
+}
+.itemProgressBarForeground {
+  background: var(--netflix-red) !important;
+  border-radius: 2px !important;
+}
+
+/* ─── NOTIFICATIONS / TOAST ──────────────────────────────── */
+.notification {
+  background: #242424 !important;
+  border-left: 3px solid var(--netflix-red) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  border-radius: 4px !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* ─── LISTE (vue liste) ──────────────────────────────────── */
+.listItem {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  transition: background var(--transition) !important;
+}
+.listItem:hover { background: rgba(255,255,255,0.04) !important; }
+
+/* ─── LOGIN PAGE ─────────────────────────────────────────── */
+.readUserFromRoute .formLogin,
+.loginPage {
+  background: var(--bg-primary) !important;
+}
+.loginDisclaimer { color: var(--text-muted) !important; font-family: var(--font-body) !important; }
+
+/* ─── USER CARDS (page accueil) ──────────────────────────── */
+.userCard .userCardImage {
+  border: 2px solid transparent !important;
+  transition: border-color var(--transition), transform var(--transition) !important;
+  border-radius: 4px !important;
+}
+.userCard:hover .userCardImage {
+  border-color: var(--netflix-red) !important;
+  transform: scale(1.05) !important;
+}
+.userCardContent .cardText {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+}
+
+/* ─── LOADING SPINNER ────────────────────────────────────── */
+.loading-spinner circle,
+.mdl-spinner__layer { stroke: var(--netflix-red) !important; }
+
+/* ─── SELECTION (texte sélectionné) ─────────────────────── */
+::selection {
+  background: var(--netflix-red) !important;
+  color: #fff !important;
+}
+
+/* ─── ANIMATION D'ENTRÉE DES CARDS ──────────────────────── */
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card {
+  animation: cardFadeIn 0.4s ease forwards;
+}
