@@ -20,7 +20,7 @@ Une fois le dépôt public sur GitHub, ton CSS est automatiquement
 disponible via jsDelivr **sans configuration** :
 
 ```
-https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@main/theme.css
+https://cdn.jsdelivr.net/gh/alphaliaud/jellyfin-netflix-theme@main/theme.css
 ```
 
 **Dans Jellyfin :**
@@ -28,7 +28,7 @@ https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@main/theme.css
 2. Coller :
 
 ```css
-@import url('https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@main/theme.css');
+@import url('https://cdn.jsdelivr.net/gh/alphaliaud/jellyfin-netflix-theme@main/theme.css');
 ```
 
 3. Enregistrer → Rafraîchir le navigateur.
@@ -36,7 +36,7 @@ https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@main/theme.css
 ### Option B — URL brute GitHub (pas de cache CDN)
 
 ```
-https://raw.githubusercontent.com/TON_PSEUDO/jellyfin-netflix-theme/main/theme.css
+https://raw.githubusercontent.com/alphaliaud/jellyfin-netflix-theme/main/theme.css
 ```
 
 > ⚠️ GitHub bloque parfois les raw URLs dans les CSS `@import`.
@@ -53,7 +53,7 @@ git push origin v1.0.0
 
 Puis utilise :
 ```
-https://cdn.jsdelivr.net/gh/TON_PSEUDO/jellyfin-netflix-theme@v1.0.0/theme.css
+https://cdn.jsdelivr.net/gh/alphaliaud/jellyfin-netflix-theme@v1.0.0/theme.css
 ```
 
 ---
