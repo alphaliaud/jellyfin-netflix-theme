@@ -114,32 +114,33 @@
 }
 
 /* --- CUSTOM BY ME --- */
-.detailLogo {
-left: 0px !important;
-}
-
 #itemDetailPage {
-.detailImageContainer {
-display: none;
-}
+    .detailLogo {
+        padding-left: 2em !important;
+        padding-right: 2em !important;
+    }
+    .detailImageContainer {
+        display: none;
+    }
 
-h1 {
-font-size: 0.8em;
-}
+    h1 {
+        font-size: 0.8em;
+    }
 
-h2 {
-font-size: 0.6em;
-}
+    h2 {
+        font-size: 0.6em;
+    }
 
-h3 {
-font-size: 0.4em;
-}
+    h3 {
+        font-size: 0.4em;
+    }
 
-.detailPageWrapperContainer .detailRibbon {
-padding: 0px !important;
-}
-.detailPagePrimaryContainer {
-padding-left: 2em !important;
-padding-right: 2em !important;
-}
+    .detailPageWrapperContainer .detailRibbon {
+        padding: 0px !important;
+    }
+
+    .detailPagePrimaryContainer {
+        padding-left: 2em !important;
+        padding-right: 2em !important;
+    }
 }
