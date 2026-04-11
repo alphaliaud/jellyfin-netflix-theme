@@ -11,7 +11,7 @@
 
 /* --- CONFIGURATION GLOBALE --- */
 :root {
-    --accent: #E50914;
+    --accent: #00a4dc;
     --border-radius: 8px;
 }
 
@@ -22,40 +22,6 @@
     position: fixed !important;
     height: 4.5em !important;
     z-index: 100;
-}
-
-/* --- IMAGE DE FOND (HERO & DÉTAILS) --- */
-.backdropContainer {
-    display: block !important;
-    height: 100vh !important;
-    width: 100% !important;
-    filter: brightness(0.6) contrast(1.1) !important;
-    mask-image: linear-gradient(to bottom, black 50%, transparent 95%) !important;
-    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 95%) !important;
-    z-index: -1;
-}
-
-/* --- ACCUEIL (HOME) UNIQUEMENT --- */
-.homeSectionsContainer {
-    margin-top: 45vh !important;
-    padding-left: 4% !important;
-}
-
-/* Bouton Lecture Accueil */
-.homeSectionsContainer > .section0::before {
-    content: "▶ LECTURE";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    color: black;
-    padding: 12px 35px;
-    border-radius: 4px;
-    font-weight: 900;
-    font-size: 1.1em;
-    margin-bottom: 40px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 /* --- PAGE DÉTAILS (FIX POUR LOOK DOROHEDORO) --- */
@@ -114,10 +80,18 @@
 }
 
 /* --- CUSTOM BY ME --- */
+body #itemDetailPage {
+color: #FFFFFF !important;
+}
 #itemDetailPage {
     .detailLogo {
-        padding-left: 2em !important;
-        padding-right: 2em !important;
+position: unset !important;
+        margin-left: 2em !important;
+        margin-right: 2em !important;
+right: 0px !important;
+left: 0px !important;
+background-position: 10% !important;
+background-repeat: no-repeat !important;
     }
     .detailImageContainer {
         display: none;
@@ -139,8 +113,274 @@
         padding: 0px !important;
     }
 
+
     .detailPagePrimaryContainer {
         padding-left: 2em !important;
         padding-right: 2em !important;
+background: linear-gradient(
+    to bottom,
+    transparent 0%,               /* Totalement clair tout en haut */
+    rgba(16, 16, 16, 0.2) 5%,    /* L'ombre commence très tôt */
+    rgba(16, 16, 16, 0.6) 20%,    /* Zone semi-sombre qui remonte plus haut */
+    rgba(16, 16, 16, 0.9) 40%,    /* Déjà très sombre à la moitié de l'image */
+    #101010 80%                   /* Noir total atteint plus rapidement */
+) !important;
+
+/* 1. On cible le bouton principal de lecture */
+.btnPlay, .mainDetailButtons .emby-button[wrapper="true"] {
+    background-color: #00a4dc !important; /* Garde votre rouge de charte */
+    border-radius: 0.6rem !important;      /* Forme pilule parfaite */
+    padding: 0.7em 2.2em !important;     /* Élargit le bouton pour plus de confort */
+    font-weight: 600 !important;         /* Texte légèrement plus épais */
+    text-transform: none !important;     /* Évite les majuscules agressives */
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;                /* Espace entre l'icône et le texte */
+flex-direction: row;
+}
+
+/* 2. Style des icônes secondaires (Favoris, Coché, etc.) */
+/* Pour qu'ils ne soient pas de simples icônes nues */
+.mainDetailButtons {
+gap: 10px;
+}
+.mainDetailButtons .emby-button:not(.btnPlay) {
+    background: rgba(255, 255, 255, 0.1) !important; /* Fond sombre translucide */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50% !important;        /* Cercles parfaits pour les petites actions */
+    width: 45px !important;
+    height: 45px !important;
+    padding: 0 !important;
+}
+
+/* 3. Effet au survol (Optionnel mais recommandé) */
+.btnPlay:hover {
+    filter: brightness(1.2) !important;
+    transform: scale(1.02) !important;
+    transition: all 0.2s ease-in-out;
+color: #FFFFFF;
+}
+
+/* 1. On ajuste l'icône pour qu'elle ne soit pas trop grosse */
+.btnPlay .material-icons, 
+.btnPlay::before {
+    font-size: 20px !important;
+    margin: 0 !important;
+}
+
+/* 2. On injecte le texte à côté */
+.btnPlay::after {
+    content: "Regarder";        /* Votre texte personnalisé */
+    font-size: 15px !important;          /* Redonne la taille au texte injecté */
+    color: white !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    text-transform: none !important;
+}
+
+.detailRibbon {
+background: 0px !important;
+display: flex !important;
+flex-direction: column !important;
+height: auto !important;
+align-items: start;
+}
+
+.detailPagePrimaryContent {
+padding-left: 0 !important;
+        padding-right: 0 !important;
+}
     }
+.detailPageSecondaryContainer .detailPageContent{
+padding-left: 2em !important;
+        padding-right: 2em !important;
+}
+
+
+#castCollapsible .cardText {
+  display: flex !important;
+}
+
+#castCollapsible .cardBox {
+display: inline-block;
+.cardScalable{
+width: 8rem;
+    height: 100%;
+}
+}
+#castCollapsible .overflowPortraitCard {
+width: 9vw;
+}
+
+
+}
+
+
+/* --- HOME --- */
+
+#indexPage .section0 h2 {
+display: none !important;
+}
+
+
+#indexPage {
+padding-top: 5rem !important;
+}
+
+/* --- HERO --- */
+/* --- CARROUSEL HERO (60% LARGEUR) --- */
+
+/* On réactive l'affichage de toutes les cartes */
+.section0 .card {
+    display: inline-block !important; /* Remet les films en ligne */
+    width: 50vw !important;           /* 3/5 de la largeur de l'écran */
+    margin-right: 20px !important;    /* Espace entre les items */
+    scroll-snap-align: start;         /* Aimante le début de la carte au bord gauche */
+border-radius: 2rem;
+}
+
+/* On configure le conteneur pour le défilement fluide */
+.section0 .emby-scroller {
+padding-left: 3.3% !important;
+padding-right: 3.3% !important;
+    overflow-x: visible !important;
+    scroll-snap-type: x mandatory;    /* Active l'aimantage automatique au scroll */
+    scroll-behavior: smooth;
+}
+
+/* Ajustement de la hauteur pour garder le format Hero */
+.section0 .cardScalable {
+    height: auto !important;
+}
+
+/* Aligne le conteneur du bouton en bas à gauche */
+.section0 .cardOverlayContainer {
+    display: flex !important;
+    align-items: flex-end !important; /* En bas */
+    justify-content: flex-start !important; /* À gauche */
+}
+
+/* Transformation du bouton en style Netflix blanc */
+.section0 [data-action="resume"] {
+    width: 10rem !important;
+    height: 3rem !important;
+    background-color: #00a4dc !important;
+    color: #FFFFFF !important;
+    border-radius: 0.6rem !important; /* Arrondi léger style Netflix */
+    padding: 12px 25px !important; /* Plus large et haut */
+    display: flex !important;
+    align-items: center !important;
+    font-size: 0 !important; /* Cache l'icône originale si nécessaire */
+    border: none !important;
+    cursor: pointer;
+    position: absolute;
+    left: 3rem;
+top: 60% !important;
+}
+
+/* Injection de l'icône et du texte proprement */
+.section0 [data-action="resume"]::after {
+    content: "▶  Continuer";
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    color: #FFFFFF !important;
+    display: inline-block !important;
+}
+
+/* Ajuster le radius de la card */
+.section0 .cardContent{
+border-radius: 2rem !important;
+}
+.section0 .cardPadder{
+border-radius: 2rem !important;
+} 
+
+/* Supprimer l'overlay opaque/noir */
+.section0 .cardOverlayContainer {
+background: rgba(0,0,0,.2) !important;
+opacity: 1 !important;
+transition: background 0.2s !important;
+}
+
+.section0 .card:hover .cardOverlayContainer {
+background: rgba(0,0,0,.5) !important;
+}
+
+/* Force l'affichage du titre série + titre épisode */
+.section0 .cardText {
+display: flex !important;
+}
+
+/* Force le non-affichage du titre série */
+.section0 .cardText-first {
+display: none !important;
+}
+
+/* Modifie la position du titre épisode */
+.section0 .cardText-secondary {
+position: absolute !important;
+top: 70% !important;
+left: 3rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Modifie le style du titre épisode */
+.section0 .cardText-secondary a {
+font-size: 1.5rem !important;
+color: #FFFFFF;
+font-weight: bold;
+text-wrap: auto;
+display: flex;
+text-align: left;
+}
+
+.section0 .cardOverlayButton-br {
+display: none !important;
+}
+
+.section0 .innerCardFooter {
+padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.section0 .itemProgressBar {
+height: 0.8rem;
+border-radius: 10rem;
+}
+
+.section0 .itemProgressBarForeground {
+border-radius: 10rem;
+}
+
+/* Sur le hover de la card, modification de l'apparition du bouton Continuer */
+.card-hoverable:focus-within .cardOverlayButton-hover, .card-hoverable:focus-within .cardOverlayContainer, .card-hoverable:hover .cardOverlayButton-hover, .card-hoverable:hover .cardOverlayContainer {
+transition-delay: 0.15s !important;
+}
+
+.section0 [data-action="resume"]:hover{
+filter: brightness(1.2) !important;
+    transform: scale(1.02) !important;
+    transition: all 0.2s ease-in-out;
+color: #FFFFFF;
+}
+
+.section0 .cardBox {
+border-radius: 10rem !important;
+}
+
+/* Désactive le zoom pour garder la fluidité du scroll */
+.section0 .card:hover {
+    transform: scale(1.02) !important;
+transition: all 0.3s ease-in-out;
+}
+
+
+
+/* itemDetailPage */
+
+.itemDetailPage .detailPagePrimaryContent .listItem {
+padding: 2rem !important;
 }
