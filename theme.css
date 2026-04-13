@@ -300,6 +300,7 @@ border-radius: 2rem !important;
 background: rgba(0,0,0,.2) !important;
 /* opacity: 1 !important; */
 transition: background 0.2s !important;
+display: none;
 }
 
 .section0 .card:hover .cardOverlayContainer {
